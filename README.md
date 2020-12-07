@@ -251,6 +251,7 @@ Table Name:
 
 ```SQL
 
+
 ```
 
 * [ ] ***Create Database and Table: After creating the database, tables, columns, and constraint, generate the script necessary to recreate the database. This script is what you will submit for review***
