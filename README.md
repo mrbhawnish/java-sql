@@ -137,11 +137,11 @@ UPDATE customers set postal_code = '11122' where contact_name = 'Bilbo Baggins';
   </details>
 
 ```SQL
-SELECT COUNT(company_name) as orders 
-from customers
+SELECT c.company_name, COUNT(c.company_name) as orders 
+from customers as c
 join orders o
-on o.customer_id = customers.customer_id
-Group By customers.company_name;
+on o.customer_id = c.customer_id
+Group By c.company_name;
 
 
 ```
@@ -154,7 +154,12 @@ Group By customers.company_name;
   </details>
 
 ```SQL
-
+SELECT c.contact_name, COUNT(*) as orders 
+from customers as c
+join orders o
+on o.customer_id = c.customer_id
+Group By c.contact_name
+Order By orders DESC;
 ```
 
 * [ ] ***list orders grouped by customer's city showing the number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders***
@@ -166,6 +171,11 @@ Group By customers.company_name;
 
 ```SQL
 
+SELECT c.city, COUNT(*) as orders 
+from customers as c
+join orders o
+on o.customer_id = c.customer_id
+Group By c.city;
 ```
 
 ## Data Normalization
@@ -185,41 +195,41 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name:  persons 
 
-|            |            |            |            |            |            |            |            |            |
+| person_id  | person_name|            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        |  Jane      |            |            |            |            |            |            |            |
+|   2        |  Bob       |            |            |            |            |            |            |            |
+|   3        |  Sam       |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: petsTypes
 
-|            |            |            |            |            |            |            |            |            |
+|  pet_id    |   pet_type |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|    1       |    Dog     |            |            |            |            |            |            |            |
+|    2       |    Horse   |            |            |            |            |            |            |            |
+|    3       |    Cat     |            |            |            |            |            |            |            |
+|    4       |    Turtle  |            |            |            |            |            |            |            |
+|    5       |    Fish    |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: pets
 
-|            |            |            |            |            |            |            |            |            |
+|   pet_id   |  pet_name  | pet_type_id|  person_id |fenced_yard city_dweller |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        |   Ellie    |     1      |   1        |   No       | Yes        |            |            |            |
+|   2        |   Joe      |     2      |   2        |   No       | No         |            |            |            |
+|   3        |  Ginger    |     1      |   3        |   Yes      | No         |            |            |            |
+|   4        |   Tiger    |     3      |   1        |   No       | Yes        |            |            |            |
+|   5        | Miss Kitty |     3      |   3        |   Yes      |  No        |            |            |            |
+|   6        |   Tobby    |     4      |   1        |   No       |  Yes       |            |            |            |
+|   7        |    Bubble  |     5      |   3        |   Yes      |  No        |            |            |            |
 
 Table Name:
 
