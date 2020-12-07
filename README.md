@@ -221,7 +221,7 @@ Table Name: petsTypes
 
 Table Name: pets
 
-|   pet_id   |  pet_name  | pet_type_id|  person_id |fenced_yard city_dweller |            |            |            |
+|   pet_id   |  pet_name  | pet_type_id|  person_id |fenced_yard |city_dweller|            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
 |   1        |   Ellie    |     1      |   1        |   No       | Yes        |            |            |            |
 |   2        |   Joe      |     2      |   2        |   No       | No         |            |            |            |
